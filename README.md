@@ -39,7 +39,12 @@ kubectl get secret argocd-initial-admin-secret -n argocd -o go-template='{{ .dat
 kubectl get service argocd-server -n argocd
 ```
 
-Apply Application CRD with web application
+Apply Application CRD with nginx application. After the apply the application should be visible in the ArgoCD webinterface.
 ```
-kubectl apply -f argocd/web-app.yaml
+kubectl apply -f argocd/application-nginx.yaml
+```
+
+Check the new pod(s) in the demo namespace.
+```
+kubectl get pods -n demo
 ```

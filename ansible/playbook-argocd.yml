@@ -15,3 +15,7 @@
         namespace: argocd
         chart_ref: argo/argo-cd
         create_namespace: true
+        values:
+          configs:
+            cm:
+              timeout.reconciliation: 30s
