@@ -1,0 +1,17 @@
+# ArgoCD
+- hosts: localhost
+  tasks:
+    - name: Add helm repo argo
+      kubernetes.core.helm_repository:
+        name: argo
+        repo_url: "https://argoproj.github.io/argo-helm"
+
+- hosts: localhost
+  tasks:
+    - name: Install Argocd Chart
+      kubernetes.core.helm:
+        kubeconfig: "~/.kube/k3s.yaml"
+        name: argocd
+        namespace: argocd
+        chart_ref: argo/argo-cd
+        create_namespace: true

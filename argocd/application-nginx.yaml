@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: application-nginx
+  namespace: argocd
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: 'demo'
+  source:
+    repoURL: 'https://github.com/shockmediabv/trendwatch-cloudautomation-161123.git'
+    path: 'deploy'
+    targetRevision: 'main'
+  project: 'default'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
